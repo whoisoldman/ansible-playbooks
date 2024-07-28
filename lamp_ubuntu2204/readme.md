@@ -1,6 +1,6 @@
-# LAMP on Ubuntu 18.04
+# LAMP on Ubuntu 22.04
 
-This playbook will install a LAMP environment (**L**inux, **A**pache, **M**ySQL and **P**HP) on an Ubuntu 18.04 machine, as explained in the guide on [How to Use Ansible to Install and Configure LAMP on Ubuntu 18.04](#). A virtualhost will be created with the options specified in the `vars/default.yml` variable file.
+This playbook will install a LAMP environment (**L**inux, **A**pache, **M**ySQL and **P**HP) on an Ubuntu 22.04 machine. A virtualhost will be created with the options specified in the `vars/default.yml` variable file.
 
 ## Settings
 
@@ -18,8 +18,8 @@ Quickstart guide for those already familiar with Ansible:
 
 ### 1. Obtain the playbook
 ```shell
-git clone https://github.com/do-community/ansible-playbooks.git
-cd ansible-playbooks/lamp_ubuntu1804
+git clone https://github.com/Bumeranghc/ansible-playbooks.git
+cd ansible-playbooks/lamp_ubuntu2204
 ```
 
 ### 2. Customize Options
@@ -43,5 +43,3 @@ disable_default: true
 ```command
 ansible-playbook -l [target] -i [inventory file] -u [remote user] playbook.yml
 ```
-
-For more information on how to run this Ansible setup, please check this guide: [soon]().

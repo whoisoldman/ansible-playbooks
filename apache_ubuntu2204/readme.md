@@ -1,6 +1,6 @@
-# Apache on Ubuntu 18.04
+# Apache on Ubuntu 22.04
 
-This playbook will install the Apache 2 web server on an Ubuntu 18.04 machine, as explained in the guide on [How to Use Ansible to Install and Configure Apache on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-apache-on-ubuntu-18-04). A virtualhost will be created with the options specified in the `vars/default.yml` variable file.
+This playbook will install the Apache 2 web server on an Ubuntu 22.04 machine. A virtualhost will be created with the options specified in the `vars/default.yml` variable file.
 
 ## Settings
 
@@ -17,8 +17,8 @@ Quick Steps:
 
 ### 1. Obtain the playbook
 ```shell
-git clone https://github.com/do-community/ansible-playbooks.git
-cd ansible-playbooks/apache_ubuntu1804
+git clone https://github.com/Bumeranghc/ansible-playbooks.git
+cd ansible-playbooks/apache_ubuntu2204
 ```
 
 ### 2. Customize Options
@@ -42,5 +42,3 @@ disable_default: true
 ```command
 ansible-playbook -l [target] -i [inventory file] -u [remote user] playbook.yml
 ```
-
-For more information on how to run this Ansible setup, please check this guide: [How to Use Ansible to Install and Configure Apache on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-apache-on-ubuntu-18-04).

@@ -1,7 +1,6 @@
-# Docker on Ubuntu 18.04
+# Docker on Ubuntu 22.04
 
-This playbook will install Docker an Ubuntu 18.04 machine, as explained in the guide on
-[How to Use Ansible to Install and Set Up Docker on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-docker-on-ubuntu-18-04).
+This playbook will install Docker an Ubuntu 22.04 machine.
 A number of containers will be created with the options specified in the `vars/default.yml` variable file.
 
 ## Settings
@@ -18,8 +17,8 @@ Quick Steps:
 
 ### 1. Obtain the playbook
 ```shell
-git clone https://github.com/do-community/ansible-playbooks.git
-cd ansible-playbooks/docker_ubuntu1804
+git clone https://github.com/Bumeranghc/ansible-playbooks.git
+cd ansible-playbooks/docker_ubuntu2204
 ```
 
 ### 2. Customize Options
@@ -42,5 +41,3 @@ default_container_command: sleep 1d
 ```command
 ansible-playbook -l [target] -i [inventory file] -u [remote user] playbook.yml
 ```
-
-For more information on how to run this Ansible setup, please check this guide: [How to Use Ansible to Install and Set Up Docker on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-docker-on-ubuntu-18-04).

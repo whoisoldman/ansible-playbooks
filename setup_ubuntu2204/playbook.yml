@@ -1,5 +1,5 @@
 #################################################
-# DO Community Playbooks: Initial Server Setup
+# Initial Server Setup
 #################################################
 ---
 - hosts: all

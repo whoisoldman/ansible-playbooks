@@ -11,7 +11,7 @@ Although we opt to not use roles, our playbooks follow a distinctive structure t
 For instance, this is how the `lemp` playbook is structured:
 
 ```
-lemp_ubuntu1804
+lemp_ubuntu2204
 ├── files
 │   ├── info.php.j2
 │   └── nginx.conf.j2
