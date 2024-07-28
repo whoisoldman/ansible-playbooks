@@ -20,7 +20,7 @@ Quickstart guide for those already familiar with Ansible:
 ### 1. Obtain the playbook
 ```shell
 git clone https://github.com/Bumeranghc/ansible-playbooks.git
-cd ansible-playbooks/wordpress-lamp_ubuntu2204
+cd ansible-playbooks/wordpress_lamp_ubuntu2204
 ```
 
 ### 2. Customize Options
