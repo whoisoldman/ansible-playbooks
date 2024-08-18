@@ -43,19 +43,45 @@ nano vars/default.yml
 
 ```yml
 ---
-#System Settings
-php_modules: [ 'php-curl', 'php-gd', 'php-mbstring', 'php-xml', 'php-xmlrpc', 'php-soap', 'php-intl', 'php-zip' ]
+#Drupal settings
+drupal_domain: "your_domain"
+drupal_composer_install_dir: "/var/www/drupal"
+drupal_core_path: "{{ drupal_composer_install_dir }}/web"
+drupal_install_site: true
+drupal_build_composer_project: true
+drupal_db_user: "drupal"
+drupal_db_password: "drupal"
+drupal_db_name: "drupal"
+drupal_version: "11"
+drush_launcher_version: "0.10.2"
+drush_version: "13"
+drupal_composer_project_package: "drupal/recommended-project:^{{ drupal_version }}@dev"
+drupal_composer_project_options: "--prefer-dist --stability dev --no-interaction"
+drupal_composer_dependencies:
+  - "drush/drush:^{{ drush_version }}"
+
+#PHP settings
+php_version: '8.3'
+php_enable_php_fpm: true
+php_packages_extra: [ 'php-zip', 'unzip' ]
+
+#Apache settings
+apache_vhosts:
+  - servername: "{{ drupal_domain }}"
+    documentroot: "{{ drupal_core_path }}"
+    extra_parameters: |
+      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ drupal_core_path }}"
+apache_remove_default_vhost: true
 
 #MySQL Settings
-mysql_root_password: "mysql_root_password"
-mysql_db: "wordpress"
-mysql_user: "sammy"
-mysql_password: "password"
-
-#HTTP Settings
-http_host: "your_domain"
-http_conf: "your_domain.conf"
-http_port: "80"
+mysql_databases:
+  - name: "{{ drupal_db_name }}"
+mysql_users:
+  - name: "{{ drupal_db_user }}"
+    host: "%"
+    password: "{{ drupal_db_password }}"
+    priv: "{{ drupal_db_name }}.*:ALL"
+mysql_root_password: "root"
 ```
 
 ### 3. Run the Playbook
