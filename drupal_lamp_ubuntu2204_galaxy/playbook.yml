@@ -1,0 +1,19 @@
+#########################################################
+# Wordpress on Ubuntu 22.04 LAMP
+#########################################################
+---
+- hosts: all
+  become: true
+  vars_files:
+    - vars/default.yml
+
+  roles:
+    - geerlingguy.apache
+    - geerlingguy.mysql
+    - geerlingguy.php-versions
+    - geerlingguy.php
+    - geerlingguy.php-mysql
+    - geerlingguy.apache-php-fpm
+    - geerlingguy.composer
+    - geerlingguy.drush
+    - geerlingguy.drupal
