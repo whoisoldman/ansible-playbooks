@@ -1,0 +1,51 @@
+---
+# tasks file for apache
+
+- block:
+  - name: Install Apache package
+    apt:
+      name: apache2
+      update_cache: yes
+      state: latest
+    tags: [ apache ]
+
+  - name: Create document root
+    file:
+      path: "/var/www/{{ productstar_http_host }}"
+      state: directory
+      owner: "www-data"
+      group: "www-data"
+      mode: '0755'
+    tags: [ apache ]
+
+  - name: Set up Apache VirtualHost
+    template:
+      src: "templates/apache.conf.j2"
+      dest: "/etc/apache2/sites-available/{{ productstar_http_conf }}"
+    notify: Reload Apache
+    tags: [ apache ]
+
+  - name: Enable rewrite module
+    shell: /usr/sbin/a2enmod rewrite
+    notify: Reload Apache
+    tags: [ apache ]
+
+  - name: Enable new site
+    shell: /usr/sbin/a2ensite {{ productstar_http_conf }}
+    notify: Reload Apache
+    tags: [ apache ]
+
+  - name: Disable default Apache site
+    shell: /usr/sbin/a2dissite 000-default.conf
+    notify: Restart Apache
+    tags: [ apache ]
+
+  # UFW Configuration
+  - name: "UFW - Allow HTTP on port {{ productstar_http_port }}"
+    ufw:
+      rule: allow
+      port: "{{ productstar_http_port }}"
+      proto: tcp
+    tags: [ system ]
+
+  become: true

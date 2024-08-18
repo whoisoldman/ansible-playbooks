@@ -1,0 +1,3 @@
+---
+# defaults file for wordpress
+productstar_wordpress_http_host: "your_domain"

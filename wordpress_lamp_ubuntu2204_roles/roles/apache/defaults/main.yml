@@ -1,0 +1,6 @@
+---
+# defaults file for apache
+#HTTP Settings
+productstar_http_host: "your_domain"
+productstar_http_conf: "your_domain.conf"
+productstar_http_port: "80"
