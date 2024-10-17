@@ -1,14 +1,14 @@
 ---
 #System Settings
-productstar_php_modules: [ 'php-curl', 'php-gd', 'php-mbstring', 'php-xml', 'php-xmlrpc', 'php-soap', 'php-intl', 'php-zip' ]
+lamp_php_modules: [ 'php-curl', 'php-gd', 'php-mbstring', 'php-xml', 'php-xmlrpc', 'php-soap', 'php-intl', 'php-zip' ]
 
 #MySQL Settings
-productstar_mysql_root_password: "mysql_root_password"
-productstar_mysql_db: "wordpress"
-productstar_mysql_user: "sammy"
-productstar_mysql_password: "password"
+lamp_mysql_root_password: "mysql_root_password"
+lamp_mysql_db: "wordpress"
+lamp_mysql_user: "sammy"
+lamp_mysql_password: "password"
 
 #HTTP Settings
-productstar_http_host: "your_domain"
-productstar_http_conf: "your_domain.conf"
-productstar_http_port: "80"
+lamp_http_host: "your_domain"
+lamp_http_conf: "your_domain.conf"
+lamp_http_port: "80"

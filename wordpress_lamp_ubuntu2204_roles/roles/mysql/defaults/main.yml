@@ -1,7 +1,7 @@
 ---
 # defaults file for mysql
 #MySQL Settings
-productstar_mysql_root_password: "mysql_root_password"
-productstar_mysql_db: "wordpress"
-productstar_mysql_user: "sammy"
-productstar_mysql_password: "password"
+lamp_mysql_root_password: "mysql_root_password"
+lamp_mysql_db: "wordpress"
+lamp_mysql_user: "sammy"
+lamp_mysql_password: "password"

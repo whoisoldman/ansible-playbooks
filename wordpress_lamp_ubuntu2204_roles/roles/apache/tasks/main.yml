@@ -11,7 +11,7 @@
 
   - name: Create document root
     file:
-      path: "/var/www/{{ productstar_http_host }}"
+      path: "/var/www/{{ lamp_http_host }}"
       state: directory
       owner: "www-data"
       group: "www-data"
@@ -21,7 +21,7 @@
   - name: Set up Apache VirtualHost
     template:
       src: "templates/apache.conf.j2"
-      dest: "/etc/apache2/sites-available/{{ productstar_http_conf }}"
+      dest: "/etc/apache2/sites-available/{{ lamp_http_conf }}"
     notify: Reload Apache
     tags: [ apache ]
 
@@ -31,7 +31,7 @@
     tags: [ apache ]
 
   - name: Enable new site
-    shell: /usr/sbin/a2ensite {{ productstar_http_conf }}
+    shell: /usr/sbin/a2ensite {{ lamp_http_conf }}
     notify: Reload Apache
     tags: [ apache ]
 
@@ -41,10 +41,10 @@
     tags: [ apache ]
 
   # UFW Configuration
-  - name: "UFW - Allow HTTP on port {{ productstar_http_port }}"
+  - name: "UFW - Allow HTTP on port {{ lamp_http_port }}"
     ufw:
       rule: allow
-      port: "{{ productstar_http_port }}"
+      port: "{{ lamp_http_port }}"
       proto: tcp
     tags: [ system ]
 

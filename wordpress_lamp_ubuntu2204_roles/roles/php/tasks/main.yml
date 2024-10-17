@@ -9,7 +9,7 @@
 
   - name: Install PHP Extensions
     apt: name={{ item }} update_cache=yes state=latest
-    loop: "{{ productstar_php_modules }}"
+    loop: "{{ lamp_php_modules }}"
     tags: [ php ]
 
   become: true
