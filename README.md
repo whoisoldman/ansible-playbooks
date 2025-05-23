@@ -39,7 +39,7 @@ If you're able to get a "pong" reply back from your node(s), your setup works as
 
 ## Windows Subsystem for Linux
 
-To test examples from this repository in Windows Subsystem for Linux, please do the next steps:
+To test examples from this repository in Windows Subsystem for Linux and hosts based on virtual machines, please do the next steps:
 
 1. Install Windows Subsystem for Linux (WSL) as described in official [documentation](https://learn.microsoft.com/en-us/windows/wsl/install) and install Ubuntu under WSL.
 
