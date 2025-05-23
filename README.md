@@ -107,5 +107,5 @@ sudo apt install ansible
 
 ```
 [myhosts]
-myhost ansible_host=<IP address> ansible_port=<Port>
+myhost ansible_host=<IP address> ansible_port=<Port> ansible_user=vagrant ansible_ssh_private_key_file=<Path to ssh private key>
 ```
