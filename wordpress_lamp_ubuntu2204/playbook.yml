@@ -40,7 +40,9 @@
       tags: [ apache ]
 
     - name: Enable rewrite module
-      shell: /usr/sbin/a2enmod rewrite
+      apache2_module:
+        state: present
+        name: rewrite
       notify: Reload Apache
       tags: [ apache ]
 
@@ -59,7 +61,9 @@
       mysql_user:
         name: root
         password: "{{ mysql_root_password }}"
+        login_password: "{{ mysql_root_password }}"
         login_unix_socket: /var/run/mysqld/mysqld.sock
+        check_implicit_admin: true
       tags: [ mysql, mysql-root ]
 
     - name: Remove all anonymous user accounts
@@ -114,21 +118,13 @@
         creates: "/var/www/{{ http_host }}/wordpress"
       tags: [ wordpress ]
 
-    - name: Set ownership
+    - name: Set ownership and permissions for Wordpress files and directories
       file:
         path: "/var/www/{{ http_host }}"
-        state: directory
-        recurse: yes
         owner: www-data
         group: www-data
-      tags: [ wordpress ]
-
-    - name: Set permissions for directories
-      shell: "/usr/bin/find /var/www/{{ http_host }}/wordpress/ -type d -exec chmod 750 {} \\;"
-      tags: [ wordpress ]
-
-    - name: Set permissions for files
-      shell: "/usr/bin/find /var/www/{{ http_host }}/wordpress/ -type f -exec chmod 640 {} \\;"
+        mode: u=rwX,g=rX,o=rX
+        recurse: yes
       tags: [ wordpress ]
 
     - name: Set up wp-config
