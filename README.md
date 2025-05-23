@@ -103,9 +103,9 @@ sudo add-apt-repository --yes --update ppa:ansible/ansible
 sudo apt install ansible
 ```
 
-7. Edit a system inventory file `/etc/ansible/hosts` adding there the next lines. Do not forget to add relevant values.
+7. Edit a system inventory file `/etc/ansible/hosts` adding there the next lines. Do not forget to add relevant values from SSH configuration data given by Vagrant earlier.
 
 ```
 [myhosts]
-myhost ansible_host=<IP address from ssh configuration given by Vagrant> ansible_port=<port from ssh configuration given by Vagrant>
+myhost ansible_host=<IP address> ansible_port=<Port>
 ```
