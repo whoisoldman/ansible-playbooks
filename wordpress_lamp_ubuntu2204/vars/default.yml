@@ -12,3 +12,6 @@ mysql_password: "password"
 http_host: "your_domain"
 http_conf: "your_domain.conf"
 http_port: "80"
+
+#WordPress Settings
+wordpress_version: "6.8.1"

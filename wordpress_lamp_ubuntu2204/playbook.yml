@@ -112,7 +112,7 @@
   # WordPress Configuration
     - name: Download and unpack latest WordPress
       unarchive:
-        src: https://wordpress.org/latest.tar.gz
+        src: https://wordpress.org/wordpress-{{ wordpress_version }}.tar.gz
         dest: "/var/www/{{ http_host }}"
         remote_src: yes
         creates: "/var/www/{{ http_host }}/wordpress"
