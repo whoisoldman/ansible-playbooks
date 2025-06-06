@@ -13,7 +13,4 @@
       tags: [ system ]
 
   roles:
-    - apache
-    - mysql
-    - php
     - wordpress

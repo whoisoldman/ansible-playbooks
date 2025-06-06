@@ -11,4 +11,6 @@ lamp_mysql_password: "password"
 #HTTP Settings
 lamp_http_host: "your_domain"
 lamp_http_conf: "your_domain.conf"
-lamp_http_port: "80"
+
+#WordPress Settings
+lamp_wordpress_version: "6.8.1"
