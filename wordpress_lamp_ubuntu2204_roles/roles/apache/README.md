@@ -30,7 +30,7 @@ Including an example of how to use your role (for instance, with variables passe
 License
 -------
 
-[MIT](ansible-playbooks/tree/master/LICENSE)
+[MIT](/LICENSE)
 
 Author Information
 ------------------
