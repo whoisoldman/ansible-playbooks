@@ -40,6 +40,8 @@ An optional section for the role authors to include contact information, or a we
 Molecule
 --------
 
+You should have Docker installed on your system for this example.
+
 To test this role with Molecule, install PyEnv:
 
 ```sh
@@ -75,6 +77,12 @@ Check Molecule:
 ```sh
 molecule --version
 molecule drivers
+```
+
+This role has defaul molecule scenario that was created by command:
+
+```sh
+molecule init scenario -d docker
 ```
 
 From this directory, run tests:

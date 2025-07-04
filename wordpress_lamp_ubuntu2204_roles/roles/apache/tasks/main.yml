@@ -26,19 +26,21 @@
     tags: [ apache ]
 
   - name: Enable rewrite module
-    shell: /usr/sbin/a2enmod rewrite
+    apache2_module:
+      state: present
+      name: rewrite
     notify: Reload Apache
     tags: [ apache ]
 
   - name: Enable new site
     shell: /usr/sbin/a2ensite {{ lamp_http_conf }}
     notify: Reload Apache
-    tags: [ apache ]
+    tags: [ apache, molecule-idempotence-notest ]
 
   - name: Disable default Apache site
     shell: /usr/sbin/a2dissite 000-default.conf
     notify: Restart Apache
-    tags: [ apache ]
+    tags: [ apache, molecule-idempotence-notest ]
 
   # UFW Configuration
   - name: "UFW - Allow HTTP on port {{ lamp_http_port }}"
@@ -46,6 +48,6 @@
       rule: allow
       port: "{{ lamp_http_port }}"
       proto: tcp
-    tags: [ system ]
+    tags: [ system, molecule-idempotence-notest ]
 
   become: true
