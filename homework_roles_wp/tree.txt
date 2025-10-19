@@ -1,0 +1,39 @@
+.
+├── .gitignore
+├── group_vars
+│   └── lamp.yml
+├── inventory
+│   └── hosts
+├── logs
+├── roles
+│   ├── apache
+│   │   ├── defaults
+│   │   ├── files
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   ├── templates
+│   │   └── vars
+│   ├── mysql
+│   │   ├── defaults
+│   │   ├── files
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   ├── templates
+│   │   └── vars
+│   ├── php
+│   │   ├── defaults
+│   │   ├── files
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   ├── templates
+│   │   └── vars
+│   └── wordpress
+│       ├── defaults
+│       ├── files
+│       ├── tasks
+│       │   └── main.yml
+│       ├── templates
+│       └── vars
+└── tree.txt
+
+29 directories, 8 files

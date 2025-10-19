@@ -1,0 +1,5 @@
+server_name: "10.211.55.4"
+web_root: "/var/www/wordpress"
+db_name: "wpdb"
+db_user: "wpuser"
+db_password: "WpPass123!"
