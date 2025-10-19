@@ -2,3 +2,4 @@
 .idea
 **/inventory
 **/ansible.cfg
+.DS_Store
