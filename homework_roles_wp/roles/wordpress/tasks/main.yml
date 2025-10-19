@@ -1,4 +1,20 @@
 ---
+- name: Ensure rsync is present (not strictly required now, but useful)
+  apt:
+    name: rsync
+    state: present
+    update_cache: true
+  become: true
+
+- name: Ensure web root
+  file:
+    path: "{{ web_root }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'
+  become: true
+
 - name: Download WordPress archive
   get_url:
     url: https://wordpress.org/latest.tar.gz
@@ -6,19 +22,14 @@
     mode: '0644'
   become: true
 
-- name: Extract WordPress
+# Кладём файлы прямо в web_root (+ убираем верхнюю папку wordpress/)
+- name: Unarchive WordPress directly into web root
   unarchive:
     src: /tmp/wordpress.tar.gz
-    dest: /tmp
+    dest: "{{ web_root }}"
     remote_src: true
-  become: true
-
-- name: Sync WordPress to web root
-  synchronize:
-    src: /tmp/wordpress/
-    dest: "{{ web_root }}/"
-    delete: no
-    recursive: yes
+    extra_opts:
+      - --strip-components=1
   become: true
 
 - name: Ensure uploads directory
