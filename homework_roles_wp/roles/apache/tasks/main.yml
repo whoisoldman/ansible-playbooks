@@ -1,2 +1,56 @@
 ---
-# tasks will be added in the next step
+- name: Install Apache
+  apt:
+    name:
+      - apache2
+    state: present
+    update_cache: true
+  become: true
+
+- name: Enable required Apache modules
+  command: a2enmod rewrite
+  args:
+    creates: /etc/apache2/mods-enabled/rewrite.load
+  become: true
+
+- name: Create web root
+  file:
+    path: "{{ web_root }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'
+  become: true
+
+- name: Deploy vhost config for WordPress
+  template:
+    src: vhost.conf.j2
+    dest: /etc/apache2/sites-available/wordpress.conf
+  become: true
+
+- name: Disable default site
+  file:
+    path: /etc/apache2/sites-enabled/000-default.conf
+    state: absent
+  become: true
+
+- name: Enable wordpress site
+  file:
+    src: /etc/apache2/sites-available/wordpress.conf
+    dest: /etc/apache2/sites-enabled/wordpress.conf
+    state: link
+    force: true
+  become: true
+
+- name: Apache config test
+  command: apache2ctl configtest
+  register: apache_configtest
+  changed_when: false
+  become: true
+
+- name: Restart Apache
+  service:
+    name: apache2
+    state: restarted
+    enabled: true
+  become: true

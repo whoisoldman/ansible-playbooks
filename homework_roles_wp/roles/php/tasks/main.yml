@@ -1,2 +1,26 @@
 ---
-# tasks will be added in the next step
+- name: Install PHP and modules
+  apt:
+    name:
+      - php
+      - libapache2-mod-php
+      - php-cli
+      - php-common
+      - php-curl
+      - php-gd
+      - php-mbstring
+      - php-xml
+      - php-zip
+      - php-mysql
+      - unzip
+      - curl
+    state: present
+    update_cache: true
+  become: true
+
+- name: Restart Apache (to load PHP)
+  service:
+    name: apache2
+    state: restarted
+    enabled: true
+  become: true

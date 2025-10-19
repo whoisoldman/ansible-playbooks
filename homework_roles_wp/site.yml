@@ -1,0 +1,11 @@
+---
+- name: LAMP WordPress on Debian/Ubuntu
+  hosts: lamp
+  become: true
+  vars_files:
+    - group_vars/lamp.yml
+  roles:
+    - php      # PHP до Apache — не критично, но обычно без разницы
+    - apache
+    - mysql
+    - wordpress
