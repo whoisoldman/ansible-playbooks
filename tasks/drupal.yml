@@ -1,0 +1,68 @@
+---
+# Минимальный, предсказуемый сценарий установки Drupal через Composer + Drush
+
+- name: Ensure base packages for composer/drush
+  apt:
+    name:
+      - git
+      - unzip
+      - curl
+      - composer
+    state: present
+    update_cache: true
+
+- name: Ensure web root
+  file:
+    path: "{{ drupal_core_path }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'
+
+- name: Create Drupal project (composer create-project)
+  command: >
+    composer create-project drupal/recommended-project:^{{ drupal_version | default('10') }} {{ drupal_core_path }}
+  args:
+    creates: "{{ drupal_core_path }}/composer.json"
+  environment:
+    COMPOSER_ALLOW_SUPERUSER: "1"
+
+- name: Fix ownership after composer create-project
+  file:
+    path: "{{ drupal_core_path }}"
+    state: directory
+    recurse: true
+    owner: www-data
+    group: www-data
+
+# Drush будет в vendor/bin после create-project
+- name: Ensure Drush installed in project
+  command: >
+    composer require drush/drush:^12 --no-interaction
+  args:
+    chdir: "{{ drupal_core_path }}"
+  environment:
+    COMPOSER_ALLOW_SUPERUSER: "1"
+
+- name: Composer install (idempotent)
+  command: composer install --no-interaction
+  args:
+    chdir: "{{ drupal_core_path }}"
+  environment:
+    COMPOSER_ALLOW_SUPERUSER: "1"
+
+- name: Run Drupal site install via Drush
+  command: >
+    {{ drupal_core_path }}/vendor/bin/drush site:install minimal -y
+    --site-name="{{ drupal_site_name }}"
+    --account-name="{{ drupal_account_name }}"
+    --account-pass="{{ drupal_account_pass }}"
+    --db-url="pgsql://{{ drupal_db_user }}:{{ drupal_db_password }}@{{ drupal_db_host }}:{{ drupal_db_port }}/{{ drupal_db_name }}"
+  args:
+    chdir: "{{ drupal_core_path }}"
+  when: drupal_site_install | default(true)
+
+- name: Nginx reload
+  service:
+    name: nginx
+    state: reloaded

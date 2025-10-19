@@ -1,0 +1,11 @@
+- name: Provision Drupal stack (NGINX + PostgreSQL + PHP + Drupal)
+  hosts: drupal
+  become: true
+  vars:
+    # связываем пакеты php c ролью geerlingguy.php
+    php_packages: "{{ php_packages_extra | default([]) }}"
+  roles:
+    - geerlingguy.nginx
+    - geerlingguy.postgresql
+    - geerlingguy.php
+    - geerlingguy.drupal

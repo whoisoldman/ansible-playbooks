@@ -1,0 +1,371 @@
+
+PLAY [Provision Drupal stack (NGINX + PostgreSQL + PHP + Drupal)] **************
+
+TASK [Gathering Facts] *********************************************************
+ok: [alexgrey]
+
+TASK [geerlingguy.nginx : Include OS-specific variables.] **********************
+ok: [alexgrey]
+
+TASK [geerlingguy.nginx : Define nginx_user.] **********************************
+ok: [alexgrey]
+
+TASK [geerlingguy.nginx : include_tasks] ***************************************
+skipping: [alexgrey]
+
+TASK [geerlingguy.nginx : include_tasks] ***************************************
+included: /Volumes/Micron4Tb/Git/GitHub/PS_Projects_GitHub/ansible-playbooks/roles/geerlingguy.nginx/tasks/setup-Ubuntu.yml for alexgrey
+
+TASK [geerlingguy.nginx : Ensure dirmngr is installed (gnupg dependency).] *****
+ok: [alexgrey]
+
+TASK [geerlingguy.nginx : Add PPA for Nginx (if configured).] ******************
+skipping: [alexgrey]
+
+TASK [geerlingguy.nginx : Ensure nginx will reinstall if the PPA was just added.] ***
+skipping: [alexgrey]
+
+TASK [geerlingguy.nginx : include_tasks] ***************************************
+included: /Volumes/Micron4Tb/Git/GitHub/PS_Projects_GitHub/ansible-playbooks/roles/geerlingguy.nginx/tasks/setup-Debian.yml for alexgrey
+
+TASK [geerlingguy.nginx : Update apt cache.] ***********************************
+ok: [alexgrey]
+
+TASK [geerlingguy.nginx : Ensure nginx is installed.] **************************
+ok: [alexgrey]
+
+TASK [geerlingguy.nginx : include_tasks] ***************************************
+skipping: [alexgrey]
+
+TASK [geerlingguy.nginx : include_tasks] ***************************************
+skipping: [alexgrey]
+
+TASK [geerlingguy.nginx : include_tasks] ***************************************
+skipping: [alexgrey]
+
+TASK [geerlingguy.nginx : include_tasks] ***************************************
+skipping: [alexgrey]
+
+TASK [geerlingguy.nginx : Remove default nginx vhost config file (if configured).] ***
+skipping: [alexgrey]
+
+TASK [geerlingguy.nginx : Ensure nginx_vhost_path exists.] *********************
+ok: [alexgrey]
+
+TASK [geerlingguy.nginx : Add managed vhost config files.] *********************
+ok: [alexgrey] => (item={'listen': '80 default_server', 'server_name': '_', 'root': '/var/www/drupal/web', 'index': 'index.php index.html', 'state': 'present', 'filename': 'drupal.conf', 'extra_parameters': 'location / {\n  try_files $uri /index.php?$query_string;\n}\n\nlocation ~ \\.php$ {\n  include fastcgi_params;\n  fastcgi_pass unix:/run/php/php-fpm.sock;\n  fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;\n  fastcgi_param PATH_INFO $fastcgi_path_info;\n  fastcgi_read_timeout 300;\n}\n\nlocation ~* \\.(js|css|png|jpg|jpeg|gif|ico|svg)$ {\n  try_files $uri /index.php?$query_string;\n  expires max;\n  log_not_found off;\n}\n'})
+
+TASK [geerlingguy.nginx : Remove managed vhost config files.] ******************
+skipping: [alexgrey] => (item={'listen': '80 default_server', 'server_name': '_', 'root': '/var/www/drupal/web', 'index': 'index.php index.html', 'state': 'present', 'filename': 'drupal.conf', 'extra_parameters': 'location / {\n  try_files $uri /index.php?$query_string;\n}\n\nlocation ~ \\.php$ {\n  include fastcgi_params;\n  fastcgi_pass unix:/run/php/php-fpm.sock;\n  fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;\n  fastcgi_param PATH_INFO $fastcgi_path_info;\n  fastcgi_read_timeout 300;\n}\n\nlocation ~* \\.(js|css|png|jpg|jpeg|gif|ico|svg)$ {\n  try_files $uri /index.php?$query_string;\n  expires max;\n  log_not_found off;\n}\n'}) 
+skipping: [alexgrey]
+
+TASK [geerlingguy.nginx : Remove legacy vhosts.conf file.] *********************
+ok: [alexgrey]
+
+TASK [geerlingguy.nginx : Copy nginx configuration in place.] ******************
+ok: [alexgrey]
+
+TASK [geerlingguy.nginx : Ensure nginx service is running as configured.] ******
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : include_tasks] **********************************
+included: /Volumes/Micron4Tb/Git/GitHub/PS_Projects_GitHub/ansible-playbooks/roles/geerlingguy.postgresql/tasks/variables.yml for alexgrey
+
+TASK [geerlingguy.postgresql : Include OS-specific variables (Debian).] ********
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : Include OS-specific variables (RedHat).] ********
+skipping: [alexgrey]
+
+TASK [geerlingguy.postgresql : Include OS-specific variables (Amazon).] ********
+skipping: [alexgrey]
+
+TASK [geerlingguy.postgresql : Include OS-specific variables (Fedora).] ********
+skipping: [alexgrey]
+
+TASK [geerlingguy.postgresql : Define postgresql_packages.] ********************
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : Define postgresql_version.] *********************
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : Define postgresql_daemon.] **********************
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : Define postgresql_data_dir.] ********************
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : Define postgresql_bin_path.] ********************
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : Define postgresql_config_path.] *****************
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : Define postgresql_unix_socket_directories_mode.] ***
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : Define postgresql_log_dir.] *********************
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : Define postgresql_effective_log_dir, if postgresql_log_dir is absolute] ***
+skipping: [alexgrey]
+
+TASK [geerlingguy.postgresql : Define postgresql_effective_log_dir, if postgresql_log_dir is relative] ***
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : include_tasks] **********************************
+skipping: [alexgrey]
+
+TASK [geerlingguy.postgresql : include_tasks] **********************************
+included: /Volumes/Micron4Tb/Git/GitHub/PS_Projects_GitHub/ansible-playbooks/roles/geerlingguy.postgresql/tasks/setup-Debian.yml for alexgrey
+
+TASK [geerlingguy.postgresql : Ensure PostgreSQL Python libraries are installed.] ***
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : Ensure PostgreSQL packages are installed.] ******
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : Ensure all configured locales are present.] *****
+ok: [alexgrey] => (item=en_US.UTF-8)
+
+TASK [geerlingguy.postgresql : Force-restart PostgreSQL after new locales are generated.] ***
+skipping: [alexgrey]
+
+TASK [geerlingguy.postgresql : include_tasks] **********************************
+skipping: [alexgrey]
+
+TASK [geerlingguy.postgresql : include_tasks] **********************************
+included: /Volumes/Micron4Tb/Git/GitHub/PS_Projects_GitHub/ansible-playbooks/roles/geerlingguy.postgresql/tasks/initialize.yml for alexgrey
+
+TASK [geerlingguy.postgresql : Set PostgreSQL environment variables.] **********
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : Ensure PostgreSQL data directory exists.] *******
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : Check if PostgreSQL database is initialized.] ***
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : Ensure PostgreSQL database is initialized.] *****
+skipping: [alexgrey]
+
+TASK [geerlingguy.postgresql : Ensure PostgreSQL log directory exists.] ********
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : include_tasks] **********************************
+included: /Volumes/Micron4Tb/Git/GitHub/PS_Projects_GitHub/ansible-playbooks/roles/geerlingguy.postgresql/tasks/configure.yml for alexgrey
+
+TASK [geerlingguy.postgresql : Configure global settings.] *********************
+ok: [alexgrey] => (item={'option': 'unix_socket_directories', 'value': '/var/run/postgresql'})
+ok: [alexgrey] => (item={'option': 'log_directory', 'value': 'log'})
+
+TASK [geerlingguy.postgresql : Configure host based authentication (if entries are configured).] ***
+changed: [alexgrey]
+
+TASK [geerlingguy.postgresql : Ensure PostgreSQL unix socket dirs exist.] ******
+ok: [alexgrey] => (item=/var/run/postgresql)
+
+TASK [geerlingguy.postgresql : Ensure PostgreSQL is started and enabled on boot.] ***
+ok: [alexgrey]
+
+TASK [geerlingguy.postgresql : Ensure PostgreSQL users are present.] ***********
+ok: [alexgrey] => (item=(censored due to no_log))
+
+TASK [geerlingguy.postgresql : Ensure PostgreSQL databases are present.] *******
+ok: [alexgrey] => (item={'name': 'drupal', 'owner': 'drupal', 'encoding': 'UTF8', 'lc_collate': 'en_US.UTF-8', 'lc_ctype': 'en_US.UTF-8'})
+
+TASK [geerlingguy.postgresql : Ensure PostgreSQL users are configured correctly.] ***
+ok: [alexgrey] => (item=(censored due to no_log))
+
+TASK [geerlingguy.postgresql : Ensure PostgreSQL users do not use deprecated privileges settings] ***
+ok: [alexgrey] => (item=(censored due to no_log))
+
+TASK [geerlingguy.postgresql : Ensure PostgreSQL users privileges are configured correctly.] ***
+skipping: [alexgrey]
+
+TASK [geerlingguy.php : Include OS-specific variables.] ************************
+ok: [alexgrey]
+
+TASK [geerlingguy.php : Include distribution and version-specific vars.] *******
+ok: [alexgrey] => (item=/Volumes/Micron4Tb/Git/GitHub/PS_Projects_GitHub/ansible-playbooks/roles/geerlingguy.php/vars/Ubuntu-22.yml)
+
+TASK [geerlingguy.php : Set the default PHP version for Debian-based OSes.] ****
+ok: [alexgrey]
+
+TASK [geerlingguy.php : Define the name of the JSON extension package on Debian for PHP <8.] ***
+skipping: [alexgrey]
+
+TASK [geerlingguy.php : Add the JSON extension on Debian for PHP <8.] **********
+skipping: [alexgrey]
+
+TASK [geerlingguy.php : Define php_packages.] **********************************
+skipping: [alexgrey]
+
+TASK [geerlingguy.php : Define php_webserver_daemon.] **************************
+ok: [alexgrey]
+
+TASK [geerlingguy.php : Define php_conf_paths.] ********************************
+ok: [alexgrey]
+
+TASK [geerlingguy.php : Define php_extension_conf_paths.] **********************
+ok: [alexgrey]
+
+TASK [geerlingguy.php : Define php_apc_conf_filename.] *************************
+ok: [alexgrey]
+
+TASK [geerlingguy.php : Define php_opcache_conf_filename (Ubuntu 16.04).] ******
+skipping: [alexgrey]
+
+TASK [geerlingguy.php : Define php_opcache_conf_filename.] *********************
+ok: [alexgrey]
+
+TASK [geerlingguy.php : Define php_fpm_conf_path.] *****************************
+ok: [alexgrey]
+
+TASK [geerlingguy.php : include_tasks] *****************************************
+skipping: [alexgrey]
+
+TASK [geerlingguy.php : include_tasks] *****************************************
+included: /Volumes/Micron4Tb/Git/GitHub/PS_Projects_GitHub/ansible-playbooks/roles/geerlingguy.php/tasks/setup-Debian.yml for alexgrey
+
+TASK [geerlingguy.php : Update apt cache.] *************************************
+ok: [alexgrey]
+
+TASK [geerlingguy.php : Ensure PHP packages are installed.] ********************
+ok: [alexgrey]
+
+TASK [geerlingguy.php : Delete APCu configuration file if this role will provide one.] ***
+skipping: [alexgrey] => (item=/etc/php/8.1/fpm/conf.d) 
+skipping: [alexgrey] => (item=/etc/php/8.1/apache2/conf.d) 
+skipping: [alexgrey] => (item=/etc/php/8.1/cli/conf.d) 
+skipping: [alexgrey]
+
+TASK [geerlingguy.php : Delete OpCache configuration file if this role will provide one.] ***
+skipping: [alexgrey] => (item=/etc/php/8.1/fpm/conf.d) 
+skipping: [alexgrey] => (item=/etc/php/8.1/apache2/conf.d) 
+skipping: [alexgrey] => (item=/etc/php/8.1/cli/conf.d) 
+skipping: [alexgrey]
+
+TASK [geerlingguy.php : include_tasks] *****************************************
+skipping: [alexgrey]
+
+TASK [geerlingguy.php : include_tasks] *****************************************
+included: /Volumes/Micron4Tb/Git/GitHub/PS_Projects_GitHub/ansible-playbooks/roles/geerlingguy.php/tasks/configure.yml for alexgrey
+
+TASK [geerlingguy.php : Ensure configuration directories exist.] ***************
+ok: [alexgrey] => (item=/etc/php/8.1/fpm)
+ok: [alexgrey] => (item=/etc/php/8.1/apache2)
+ok: [alexgrey] => (item=/etc/php/8.1/cli)
+ok: [alexgrey] => (item=/etc/php/8.1/fpm/conf.d)
+ok: [alexgrey] => (item=/etc/php/8.1/apache2/conf.d)
+ok: [alexgrey] => (item=/etc/php/8.1/cli/conf.d)
+
+TASK [geerlingguy.php : Place PHP configuration file in place.] ****************
+ok: [alexgrey] => (item=/etc/php/8.1/fpm)
+ok: [alexgrey] => (item=/etc/php/8.1/apache2)
+ok: [alexgrey] => (item=/etc/php/8.1/cli)
+
+TASK [geerlingguy.php : include_tasks] *****************************************
+included: /Volumes/Micron4Tb/Git/GitHub/PS_Projects_GitHub/ansible-playbooks/roles/geerlingguy.php/tasks/configure-apcu.yml for alexgrey
+
+TASK [geerlingguy.php : Check for existing APCu config files.] *****************
+ok: [alexgrey] => (item=/etc/php/8.1/fpm/conf.d)
+ok: [alexgrey] => (item=/etc/php/8.1/apache2/conf.d)
+ok: [alexgrey] => (item=/etc/php/8.1/cli/conf.d)
+
+TASK [geerlingguy.php : Remove any non-role-supplied APCu config files.] *******
+skipping: [alexgrey] => (item=[{'changed': False, 'msg': 'All paths examined', 'matched': 1, 'examined': 38, 'skipped_paths': {}, 'invocation': {'module_args': {'contains': 'extension(\\s+)?=(\\s+)?apc[u]?\\.so', 'paths': ['/etc/php/8.1/fpm/conf.d'], 'patterns': ['*'], 'read_whole_file': False, 'file_type': 'file', 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'checksum_algorithm': 'sha1', 'use_regex': False, 'exact_mode': True, 'excludes': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/etc/php/8.1/fpm/conf.d', 'ansible_loop_var': 'item'}, {'path': '/etc/php/8.1/fpm/conf.d/20-apcu.ini', 'mode': '0644', 'isdir': False, 'ischr': False, 'isblk': False, 'isreg': True, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 0, 'size': 66, 'inode': 3150278, 'dev': 2051, 'nlink': 1, 'atime': 1760871924.203268, 'mtime': 1760871920.9042678, 'ctime': 1760871921.356268, 'gr_name': 'root', 'pw_name': 'root', 'wusr': True, 'rusr': True, 'xusr': False, 'wgrp': False, 'rgrp': True, 'xgrp': False, 'woth': False, 'roth': True, 'xoth': False, 'isuid': False, 'isgid': False}]) 
+skipping: [alexgrey] => (item=[{'changed': False, 'msg': 'All paths examined', 'matched': 1, 'examined': 2, 'skipped_paths': {}, 'invocation': {'module_args': {'contains': 'extension(\\s+)?=(\\s+)?apc[u]?\\.so', 'paths': ['/etc/php/8.1/apache2/conf.d'], 'patterns': ['*'], 'read_whole_file': False, 'file_type': 'file', 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'checksum_algorithm': 'sha1', 'use_regex': False, 'exact_mode': True, 'excludes': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/etc/php/8.1/apache2/conf.d', 'ansible_loop_var': 'item'}, {'path': '/etc/php/8.1/apache2/conf.d/20-apcu.ini', 'mode': '0644', 'isdir': False, 'ischr': False, 'isblk': False, 'isreg': True, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 0, 'size': 66, 'inode': 3150282, 'dev': 2051, 'nlink': 1, 'atime': 1760871924.753268, 'mtime': 1760871921.970268, 'ctime': 1760871922.421268, 'gr_name': 'root', 'pw_name': 'root', 'wusr': True, 'rusr': True, 'xusr': False, 'wgrp': False, 'rgrp': True, 'xgrp': False, 'woth': False, 'roth': True, 'xoth': False, 'isuid': False, 'isgid': False}]) 
+skipping: [alexgrey] => (item=[{'changed': False, 'msg': 'All paths examined', 'matched': 1, 'examined': 38, 'skipped_paths': {}, 'invocation': {'module_args': {'contains': 'extension(\\s+)?=(\\s+)?apc[u]?\\.so', 'paths': ['/etc/php/8.1/cli/conf.d'], 'patterns': ['*'], 'read_whole_file': False, 'file_type': 'file', 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'checksum_algorithm': 'sha1', 'use_regex': False, 'exact_mode': True, 'excludes': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/etc/php/8.1/cli/conf.d', 'ansible_loop_var': 'item'}, {'path': '/etc/php/8.1/cli/conf.d/20-apcu.ini', 'mode': '0644', 'isdir': False, 'ischr': False, 'isblk': False, 'isreg': True, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 0, 'size': 66, 'inode': 3150286, 'dev': 2051, 'nlink': 1, 'atime': 1760871925.2972682, 'mtime': 1760871923.049268, 'ctime': 1760871923.493268, 'gr_name': 'root', 'pw_name': 'root', 'wusr': True, 'rusr': True, 'xusr': False, 'wgrp': False, 'rgrp': True, 'xgrp': False, 'woth': False, 'roth': True, 'xoth': False, 'isuid': False, 'isgid': False}]) 
+skipping: [alexgrey]
+
+TASK [geerlingguy.php : Ensure APCu config file is present.] *******************
+ok: [alexgrey] => (item=/etc/php/8.1/fpm/conf.d)
+ok: [alexgrey] => (item=/etc/php/8.1/apache2/conf.d)
+ok: [alexgrey] => (item=/etc/php/8.1/cli/conf.d)
+
+TASK [geerlingguy.php : Remove APCu config file if APC is disabled.] ***********
+skipping: [alexgrey] => (item=/etc/php/8.1/fpm/conf.d) 
+skipping: [alexgrey] => (item=/etc/php/8.1/apache2/conf.d) 
+skipping: [alexgrey] => (item=/etc/php/8.1/cli/conf.d) 
+skipping: [alexgrey]
+
+TASK [geerlingguy.php : include_tasks] *****************************************
+included: /Volumes/Micron4Tb/Git/GitHub/PS_Projects_GitHub/ansible-playbooks/roles/geerlingguy.php/tasks/configure-opcache.yml for alexgrey
+
+TASK [geerlingguy.php : Check for existing OpCache config files.] **************
+ok: [alexgrey] => (item=/etc/php/8.1/fpm/conf.d)
+ok: [alexgrey] => (item=/etc/php/8.1/apache2/conf.d)
+ok: [alexgrey] => (item=/etc/php/8.1/cli/conf.d)
+
+TASK [geerlingguy.php : Remove any non-role-supplied OpCache config files.] ****
+skipping: [alexgrey] => (item=[{'changed': False, 'msg': 'All paths examined', 'matched': 1, 'examined': 38, 'skipped_paths': {}, 'invocation': {'module_args': {'contains': 'zend_extension(\\s+)?=(\\s+)?opcache\\.so', 'paths': ['/etc/php/8.1/fpm/conf.d'], 'patterns': ['*'], 'read_whole_file': False, 'file_type': 'file', 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'checksum_algorithm': 'sha1', 'use_regex': False, 'exact_mode': True, 'excludes': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/etc/php/8.1/fpm/conf.d', 'ansible_loop_var': 'item'}, {'path': '/etc/php/8.1/fpm/conf.d/10-opcache.ini', 'mode': '0644', 'isdir': False, 'ischr': False, 'isblk': False, 'isreg': True, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 0, 'size': 302, 'inode': 3150290, 'dev': 2051, 'nlink': 1, 'atime': 1760872145.3582785, 'mtime': 1760871926.0332682, 'ctime': 1760871926.4832683, 'gr_name': 'root', 'pw_name': 'root', 'wusr': True, 'rusr': True, 'xusr': False, 'wgrp': False, 'rgrp': True, 'xgrp': False, 'woth': False, 'roth': True, 'xoth': False, 'isuid': False, 'isgid': False}]) 
+skipping: [alexgrey] => (item=[{'changed': False, 'msg': 'All paths examined', 'matched': 1, 'examined': 2, 'skipped_paths': {}, 'invocation': {'module_args': {'contains': 'zend_extension(\\s+)?=(\\s+)?opcache\\.so', 'paths': ['/etc/php/8.1/apache2/conf.d'], 'patterns': ['*'], 'read_whole_file': False, 'file_type': 'file', 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'checksum_algorithm': 'sha1', 'use_regex': False, 'exact_mode': True, 'excludes': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/etc/php/8.1/apache2/conf.d', 'ansible_loop_var': 'item'}, {'path': '/etc/php/8.1/apache2/conf.d/10-opcache.ini', 'mode': '0644', 'isdir': False, 'ischr': False, 'isblk': False, 'isreg': True, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 0, 'size': 302, 'inode': 3150294, 'dev': 2051, 'nlink': 1, 'atime': 1760872145.3332787, 'mtime': 1760871927.0832682, 'ctime': 1760871927.5232682, 'gr_name': 'root', 'pw_name': 'root', 'wusr': True, 'rusr': True, 'xusr': False, 'wgrp': False, 'rgrp': True, 'xgrp': False, 'woth': False, 'roth': True, 'xoth': False, 'isuid': False, 'isgid': False}]) 
+skipping: [alexgrey] => (item=[{'changed': False, 'msg': 'All paths examined', 'matched': 1, 'examined': 38, 'skipped_paths': {}, 'invocation': {'module_args': {'contains': 'zend_extension(\\s+)?=(\\s+)?opcache\\.so', 'paths': ['/etc/php/8.1/cli/conf.d'], 'patterns': ['*'], 'read_whole_file': False, 'file_type': 'file', 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'checksum_algorithm': 'sha1', 'use_regex': False, 'exact_mode': True, 'excludes': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/etc/php/8.1/cli/conf.d', 'ansible_loop_var': 'item'}, {'path': '/etc/php/8.1/cli/conf.d/10-opcache.ini', 'mode': '0644', 'isdir': False, 'ischr': False, 'isblk': False, 'isreg': True, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 0, 'size': 302, 'inode': 3150298, 'dev': 2051, 'nlink': 1, 'atime': 1760872145.4082787, 'mtime': 1760871928.1282682, 'ctime': 1760871928.5712683, 'gr_name': 'root', 'pw_name': 'root', 'wusr': True, 'rusr': True, 'xusr': False, 'wgrp': False, 'rgrp': True, 'xgrp': False, 'woth': False, 'roth': True, 'xoth': False, 'isuid': False, 'isgid': False}]) 
+skipping: [alexgrey]
+
+TASK [geerlingguy.php : Ensure OpCache config file is present.] ****************
+ok: [alexgrey] => (item=/etc/php/8.1/fpm/conf.d)
+ok: [alexgrey] => (item=/etc/php/8.1/apache2/conf.d)
+ok: [alexgrey] => (item=/etc/php/8.1/cli/conf.d)
+
+TASK [geerlingguy.php : Remove OpCache config file if OpCache is disabled.] ****
+skipping: [alexgrey] => (item=/etc/php/8.1/fpm/conf.d) 
+skipping: [alexgrey] => (item=/etc/php/8.1/apache2/conf.d) 
+skipping: [alexgrey] => (item=/etc/php/8.1/cli/conf.d) 
+skipping: [alexgrey]
+
+TASK [geerlingguy.php : include_tasks] *****************************************
+included: /Volumes/Micron4Tb/Git/GitHub/PS_Projects_GitHub/ansible-playbooks/roles/geerlingguy.php/tasks/configure-fpm.yml for alexgrey
+
+TASK [geerlingguy.php : Define php_fpm_daemon.] ********************************
+ok: [alexgrey]
+
+TASK [geerlingguy.php : Define php_fpm_pool_conf_path.] ************************
+ok: [alexgrey]
+
+TASK [geerlingguy.php : Define php_fpm_pool_user.] *****************************
+ok: [alexgrey]
+
+TASK [geerlingguy.php : Define php_fpm_pool_group.] ****************************
+ok: [alexgrey]
+
+TASK [geerlingguy.php : Stat php_fpm_pool_conf_path] ***************************
+ok: [alexgrey]
+
+TASK [geerlingguy.php : Ensure the default pool directory exists.] *************
+skipping: [alexgrey]
+
+TASK [geerlingguy.php : Create fpm pools.] *************************************
+skipping: [alexgrey] => (item={'pool_name': 'www', 'pool_template': 'www.conf.j2', 'pool_listen': 'unix:/run/php/php8.1-fpm.sock', 'pool_listen_allowed_clients': '127.0.0.1', 'pool_pm': 'dynamic', 'pool_pm_max_children': 50, 'pool_pm_start_servers': 5, 'pool_pm_min_spare_servers': 5, 'pool_pm_max_spare_servers': 5, 'pool_pm_max_requests': 0, 'pool_pm_status_path': ''}) 
+skipping: [alexgrey]
+
+TASK [geerlingguy.php : Ensure php-fpm is started and enabled at boot (if configured).] ***
+skipping: [alexgrey]
+
+TASK [Ensure base packages for composer/drush] *********************************
+changed: [alexgrey]
+
+TASK [Ensure web root] *********************************************************
+ok: [alexgrey]
+
+TASK [Create Drupal project (composer create-project)] *************************
+changed: [alexgrey]
+
+TASK [Fix ownership after composer create-project] *****************************
+changed: [alexgrey]
+
+TASK [Run Drupal site install via Drush] ***************************************
+[ERROR]: Task failed: Module failed: Error executing command: [Errno 2] No such file or directory: b'/var/www/drupal/vendor/bin/drush'
+Origin: /Volumes/Micron4Tb/Git/GitHub/PS_Projects_GitHub/ansible-playbooks/tasks/drupal.yml:39:3
+
+37
+38 # Drush будет в vendor/bin после create-project
+39 - name: Run Drupal site install via Drush
+     ^ column 3
+
+fatal: [alexgrey]: FAILED! => {"changed": false, "cmd": "/var/www/drupal/vendor/bin/drush site:install minimal -y '--site-name=Drupal Demo' --account-name=admin --account-pass=AdminPass123 '--db-url=pgsql://drupal:********@127.0.0.1:5432/drupal'", "msg": "Error executing command.", "rc": 2, "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+
+PLAY RECAP *********************************************************************
+alexgrey                   : ok=73   changed=4    unreachable=0    failed=1    skipped=33   rescued=0    ignored=0   
+

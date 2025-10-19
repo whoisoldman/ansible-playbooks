@@ -1,0 +1,79 @@
+# --- PostgreSQL users & DB ---
+postgresql_users:
+  - name: drupal
+    password: "drupal_pass_123"   # можно заменить на свой
+    priv: "ALL"
+
+postgresql_databases:
+  - name: drupal
+    owner: drupal
+    encoding: "UTF8"
+    lc_collate: "en_US.UTF-8"
+    lc_ctype: "en_US.UTF-8"
+
+# --- PHP пакеты (Ubuntu 22.04) ---
+php_packages_extra:
+  - php-fpm
+  - php-cli
+  - php-common
+  - php-curl
+  - php-gd
+  - php-mbstring
+  - php-xml
+  - php-zip
+  - php-opcache
+  - php-pgsql
+
+# --- Drupal настройки ---
+drupal_core_path: /var/www/drupal
+drupal_version: "10"
+drupal_domain: "10.211.55.4"
+drupal_site_name: "Drupal Demo"
+drupal_account_name: "admin"
+drupal_account_pass: "AdminPass123"     # можно заменить
+drupal_site_install: true
+
+# DB (Drupal)
+drupal_db_user: drupal
+drupal_db_password: "drupal_pass_123"
+drupal_db_name: drupal
+drupal_db_driver: pgsql
+drupal_db_port: 5432
+drupal_db_host: "127.0.0.1"
+
+# --- NGINX vhost ---
+nginx_vhosts:
+  - listen: "80 default_server"
+    server_name: "_"
+    root: "/var/www/drupal/web"
+    index: "index.php index.html"
+    state: "present"
+    filename: "drupal.conf"
+    extra_parameters: |
+      location / {
+        try_files $uri /index.php?$query_string;
+      }
+
+      location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass unix:/run/php/php-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+        fastcgi_read_timeout 300;
+      }
+
+      location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
+        try_files $uri /index.php?$query_string;
+        expires max;
+        log_not_found off;
+      }
+
+php_fpm_listen: "unix:/run/php/php8.1-fpm.sock"
+
+# --- PostgreSQL HBA to allow password auth for drupal user ---
+postgresql_hba_entries:
+  - { type: local, database: all, user: postgres, auth_method: peer }
+  - { type: local, database: drupal,  user: drupal,   auth_method: md5 }
+  - { type: host,  database: drupal,  user: drupal,   address: "127.0.0.1/32", auth_method: md5 }
+
+nginx_remove_default_vhost: true
