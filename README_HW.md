@@ -1,8 +1,8 @@
 # Домашнее задание: Ansible. Роли и переменные
 
 ## Цель работы
-Развернуть CMS **Drupal** на удалённом хосте Ubuntu 22.04 с использованием ролей Ansible.  
-Стек установки: **NGINX + PHP-FPM (8.1) + PostgreSQL + Drupal**.  
+Развернуть CMS **Drupal** на удалённом хосте Ubuntu 22.04 с использованием ролей Ansible.
+Стек установки: **NGINX + PHP-FPM (8.1) + PostgreSQL + Drupal**.
 Все компоненты устанавливаются автоматически при выполнении одного сценария (playbook).
 
 ---
@@ -25,8 +25,8 @@
 ## 2. Подготовка проекта
 
 ### 2.1. Форк и клон репозитория
-Создан форк репозитория преподавателя:  
-[https://github.com/whoisoldman/ansible-playbooks](https://github.com/whoisoldman/ansible-playbooks)
+Создан форк репозитория преподавателя:
+[https://github.com/Bumeranghc/ansible-playbooks](https://github.com/Bumeranghc/ansible-playbooks))
 
 Затем выполнено:
 ```bash
@@ -247,16 +247,16 @@ nginx_vhosts:
 ansible-playbook -i inventory/hosts -u alexgrey -b -K playbook.yml | tee logs/run_$(date +%Y%m%d_%H%M%S).log
 ```
 
-- `-i` — путь к inventory  
-- `-u` — имя пользователя на удалённом хосте  
-- `-b` — выполнить с правами root (sudo)  
-- `-K` — запросить sudo-пароль  
+- `-i` — путь к inventory
+- `-u` — имя пользователя на удалённом хосте
+- `-b` — выполнить с правами root (sudo)
+- `-K` — запросить sudo-пароль
 
 ---
 
 ## 8. Результат выполнения
 
-- Все роли установлены успешно.  
+- Все роли установлены успешно.
 - Drupal развёрнут и доступен по адресу:
 
   **http://10.211.55.4/**
@@ -279,7 +279,7 @@ logs/run_YYYYMMDD_HHMMSS.log
 
 ## 10. Заключение
 
-- Роли `geerlingguy.*` обеспечили установку NGINX, PHP и PostgreSQL.  
-- Drupal установлен из Composer-пакета `drupal/recommended-project`.  
-- Для управления сайтом установлен Drush версии 12 (совместим с PHP 8.1).  
+- Роли `geerlingguy.*` обеспечили установку NGINX, PHP и PostgreSQL.
+- Drupal установлен из Composer-пакета `drupal/recommended-project`.
+- Для управления сайтом установлен Drush версии 12 (совместим с PHP 8.1).
 - Настройка воспроизводима на любой машине с Ansible 2.19+ и SSH-доступом к Ubuntu 22.04.
